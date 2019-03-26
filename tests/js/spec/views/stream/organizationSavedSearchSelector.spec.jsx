@@ -26,7 +26,10 @@ describe('OrganizationSavedSearchSelector', function() {
       <OrganizationSavedSearchSelector
         savedSearchList={savedSearchList}
         onSavedSearchSelect={onSelect}
-      />
+        orgId={'123'}
+        query={'is:unresolved assigned:lyn@sentry.io'}
+      />,
+      TestStubs.routerContext()
     );
   });
 
@@ -56,6 +59,15 @@ describe('OrganizationSavedSearchSelector', function() {
 
       item.simulate('click');
       expect(onSelect).toHaveBeenCalled();
+    });
+  });
+
+  describe('saves a search', function() {
+    it('clicking save search opens modal', function() {
+      wrapper.find('DropdownLink').simulate('click');
+      expect(wrapper.find('ModalDialog')).toHaveLength(0);
+      wrapper.find('button').simulate('click');
+      expect(wrapper.find('ModalDialog')).toHaveLength(1);
     });
   });
 });

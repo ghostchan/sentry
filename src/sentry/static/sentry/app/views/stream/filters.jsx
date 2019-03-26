@@ -89,8 +89,10 @@ class StreamFilters extends React.Component {
               )}
             >
               <OrganizationSavedSearchSelector
+                orgId={orgId}
                 savedSearchList={savedSearchList}
                 onSavedSearchSelect={onSavedSearchSelect}
+                query={query}
                 queryCount={queryCount}
                 queryMaxCount={queryMaxCount}
               />
